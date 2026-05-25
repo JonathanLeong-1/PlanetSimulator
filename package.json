@@ -1,0 +1,39 @@
+{
+  "name": "planet-simulator",
+  "version": "1.0.0",
+  "description": "3D interactive Earth-like planet generator using Three.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "test:e2e": "playwright test",
+    "test:ci": "npm run test && npm run build && npm run test:e2e",
+    "lint": "eslint src --ext .js"
+  },
+  "keywords": [
+    "threejs",
+    "planet",
+    "procedural",
+    "generator",
+    "3d"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.40.1",
+    "@vitest/ui": "^1.0.4",
+    "eslint": "^8.55.0",
+    "vite": "^5.0.8",
+    "vitest": "^1.0.4"
+  },
+  "dependencies": {
+    "lil-gui": "^0.19.1",
+    "seedrandom": "^3.0.5",
+    "simplex-noise": "^4.0.1",
+    "three": "^0.159.0"
+  }
+}

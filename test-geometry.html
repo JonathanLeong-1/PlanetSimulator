@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Geometry Test</title>
+</head>
+<body>
+    <h1>Three.js IcosahedronGeometry Detail Level Test</h1>
+    <pre id="output"></pre>
+    
+    <script type="module">
+        import * as THREE from 'three';
+        
+        const output = document.getElementById('output');
+        let results = 'Testing IcosahedronGeometry detail levels:\n\n';
+        
+        for (let detail = 0; detail <= 10; detail++) {
+            try {
+                const geom = new THREE.IcosahedronGeometry(1, detail);
+                const count = geom.attributes.position.count;
+                results += `Detail ${detail}: ${count} vertices`;
+                
+                if (count === 4860) {
+                    results += ' ← MATCHES YOUR 4860!';
+                }
+                
+                results += '\n';
+                geom.dispose();
+            } catch (e) {
+                results += `Detail ${detail}: ERROR - ${e.message}\n`;
+            }
+        }
+        
+        // Test specifically what detail=8 gives us
+        results += '\n--- Specific Test ---\n';
+        const test8 = new THREE.IcosahedronGeometry(1, 8);
+        results += `new THREE.IcosahedronGeometry(1, 8) = ${test8.attributes.position.count} vertices\n`;
+        
+        output.textContent = results;
+        console.log(results);
+    </script>
+</body>
+</html>

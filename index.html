@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planet Simulator - Interactive Earth-like Planet Generator</title>
+        <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%2300122b'/%3E%3Ccircle cx='26' cy='24' r='9' fill='%2335d0ff'/%3E%3Cellipse cx='39' cy='37' rx='13' ry='8' fill='%232dbf6f'/%3E%3C/svg%3E">
+        <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.159.0/build/three.module.js",
+                "three/": "https://cdn.jsdelivr.net/npm/three@0.159.0/",
+                "lil-gui": "https://cdn.jsdelivr.net/npm/lil-gui@0.19/+esm",
+                "seedrandom": "https://cdn.jsdelivr.net/npm/seedrandom@3.0.5/+esm",
+                "simplex-noise": "https://cdn.jsdelivr.net/npm/simplex-noise@4.0.1/+esm"
+            }
+        }
+        </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            background: #000;
+        }
+        
+        #canvas-container {
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            z-index: 1000;
+        }
+        
+        #info {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            max-width: 300px;
+            z-index: 100;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+        }
+        
+        #info h3 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            color: #4fc3f7;
+        }
+        
+        #hover-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            z-index: 100;
+            pointer-events: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div id="loading">Generating Planet...</div>
+    <div id="info">
+        <h3>Planet Simulator</h3>
+        <div id="stats"></div>
+    </div>
+    <div id="hover-hint">💡 Hover over the planet to see detailed information</div>
+    <div id="canvas-container"></div>
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>

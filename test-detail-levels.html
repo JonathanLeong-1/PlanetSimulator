@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detail Level Test</title>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.181.0/build/three.module.js"
+        }
+    }
+    </script>
+</head>
+<body>
+    <h1>Three.js r181 Detail Level Test</h1>
+    <pre id="output"></pre>
+    
+    <script type="module">
+        import * as THREE from 'three';
+        
+        const output = document.getElementById('output');
+        let results = `Three.js version: r${THREE.REVISION}\n\n`;
+        results += 'Testing IcosahedronGeometry detail levels:\n\n';
+        
+        for (let detail = 0; detail <= 10; detail++) {
+            try {
+                const geom = new THREE.IcosahedronGeometry(1, detail);
+                const count = geom.attributes.position.count;
+                results += `Detail ${detail}: ${count.toLocaleString()} vertices`;
+                
+                if (count === 4860) {
+                    results += ' ← YOUR CURRENT VALUE';
+                }
+                
+                results += '\n';
+                geom.dispose();
+            } catch (e) {
+                results += `Detail ${detail}: ERROR - ${e.message}\n`;
+                break;
+            }
+        }
+        
+        output.textContent = results;
+        console.log(results);
+    </script>
+</body>
+</html>
